@@ -152,6 +152,11 @@ impl SpidevTransfer {
         }
     }
 
+    pub fn cs_change(mut self, cs_change: bool) -> Self {
+        self.cs_change = if cs_change { 1 } else { 0 };
+        self
+    }
+
     fn as_spi_ioc_transfer(&self) -> spi_ioc_transfer {
         spi_ioc_transfer {
             tx_buf: match self.tx_buf {
